@@ -153,18 +153,32 @@ def kaupa():
 
 @app.route('/karfa/kaupa/takk', methods=['GET','POST'])
 def takk():
+    stock = []
     for vara in session['karfa']:
-        if vara[3] > 0:
-            cur = conn.cursor()
-            cur.execute("UPDATE stock SET amount = amount - 1 WHERE product_id = vara and amount > 0")
-        else:
-            return render_template("uppselt.html", vara=vara)
+        for i in vorur:
+            if i[0] == vara:
+                if i[3] > 0:
+                    print(i[0])
+                    cur = conn.cursor()
+                    cur.execute("UPDATE stock SET amount = amount-1 WHERE product_id = %s",(i[0]))
+                    conn.commit()
+                    cur.close()
+                    gott = True
+                else:
+                    gott = False
+            
+    if gott:
+        karfa = []
+        session['karfa'] = karfa
+        return render_template("takk.html", vorur=vorur)
+    else:
+        return render_template("uppselt.html")
 
-	karfa = []
-	session['karfa'] = karfa
-    
-	return render_template("takk.html", vorur=vorur, nafn=nafn, netfang=netfang)
 
+@app.route('/userdel')
+def userdel():
+	session.pop('karfa',None)
+	return render_template("taema.html", vorur=vorur)
 
 @app.errorhandler(404)
 def error404(error):
