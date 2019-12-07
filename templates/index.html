@@ -3,12 +3,16 @@
 
 {% block innihald %}
     <a href="/karfa"><i class="fas fa-cart-arrow-down"></i>:{{ k }}</a>
-    <ol>
+    <ul style="list-style-type:none;">
         {% for vara in vorur %}
             {% set mynd = vara[4] %}
             <h6> {{ vara[1] }} </h6><li>
             <img src="{{ url_for('static',filename=mynd) }}" alt="{{vara[1]}}" height="200" width=auto>
+            <br>
             <a href="/ikorfu/{{ vara[0] }}"> {{vara[2]}} </a></li>
         {% endfor %}
-    </ol>
+    </ul>
+    <a href="/utskra">Útskrá</a>
+    <br><br>
+    <a href='/viss'>Eyða Notanda</a>
 {% endblock %}

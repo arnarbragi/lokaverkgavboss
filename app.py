@@ -175,10 +175,21 @@ def takk():
         return render_template("uppselt.html")
 
 
+@app.route('/viss')
+def viss():
+	return render_template("viss.html", vorur=vorur)
+
 @app.route('/userdel')
 def userdel():
-	session.pop('karfa',None)
-	return render_template("taema.html", vorur=vorur)
+    nafn = session['logged_in']
+    print("nafnið er ",nafn)
+    cur = conn.cursor()
+    cur.execute("DELETE FROM users WHERE nafn = %s",(nafn))
+    conn.commit()
+    cur.close()
+    hlutur = []
+    session['logged_in'] = hlutur
+    return render_template("userdel.html", vorur=vorur)
 
 @app.errorhandler(404)
 def error404(error):

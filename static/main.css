@@ -1,0 +1,16 @@
+.header{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline overline;
+    text-decoration-color: crimson;
+}
+
+.body{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-orientation: sideways-right;
+    text-indent: 20px;
+    text-decoration: underline auto;
+    text-decoration-color: orangered;
+    background: radial-gradient(green,white,red,white,green);
+}

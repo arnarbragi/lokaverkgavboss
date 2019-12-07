@@ -7,15 +7,8 @@
     {% endfor %}
     <h4>Heildarverð: {{ heild }}</h4>
 
-    <form method="POST" action="/karfa/kaupa/takk">
-        <p>Nafn:</p>
-        <input type="text" name="name" required>
-        <br>
-        <p>Netfang:</p>
-        <input type="email" name="email" required>
-        <br><br>
-        <input type="submit" value="Kaupa">
-    </form>
+    <a href='/karfa/kaupa/takk'>Kaupa</a>
+    <br>
     <br>
     <a href='/karfa'>Hætta við</a>
 {% endblock %}
