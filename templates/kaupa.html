@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block innihald %}
+    {% for item in karfa %}
+        <p>{{ vorur[item-1][1]}}   {{ vorur[item-1][2]}}</p>
+    {% endfor %}
+    <h4>Heildarverð: {{ heild }}</h4>
+
+    <form method="POST" action="/karfa/kaupa/takk">
+        <p>Nafn:</p>
+        <input type="text" name="name" required>
+        <br>
+        <p>Netfang:</p>
+        <input type="email" name="email" required>
+        <br><br>
+        <input type="submit" value="Kaupa">
+    </form>
+    <br>
+    <a href='/karfa'>Hætta við</a>
+{% endblock %}

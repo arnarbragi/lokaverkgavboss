@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block innihald %}
+    <h3>Nýskráning:</h3>
+    <form method="POST" action="/add">
+        <p>Email:</p>
+        <input type="email" name="email" required>
+        <br>
+        <p>Notandanafn:</p>
+        <input type="text" name="notandanafn" required>
+        <br>
+        <p>Password:</p>
+        <input type="text" name="password" required>
+        <br>
+        <p>Nafn:</p>
+        <input type="text" name="nafn" required>
+        <br><br>
+        <input type="submit" value="Nýskrá">
+    </form><br><br>
+    <a href="/">Innskrá</a>
+{% endblock %}
