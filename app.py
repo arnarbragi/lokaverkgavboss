@@ -8,7 +8,7 @@ conn = pymysql.connect(host='tsuts.tskoli.is', port=3306, user='2210022020', pas
 # https://pythonspot.com/login-authentication-with-flask/
 
 cur = conn.cursor()
-cur.execute("SELECT products.product_id, products.product, products.price, stock.amount from products inner join stock on products.product_id = stock.product_id")
+cur.execute("SELECT products.product_id, products.product, products.price, stock.amount, myndir.nafn from products inner join stock on products.product_id = stock.product_id inner join myndir on products.product_id = myndir.product_id")
 vorur = cur.fetchall()
 
 @app.route('/')
@@ -153,11 +153,16 @@ def kaupa():
 
 @app.route('/karfa/kaupa/takk', methods=['GET','POST'])
 def takk():
-	if request.method == 'POST':
-		nafn = request.form['name']
-		netfang = request.form['email']
+    for vara in session['karfa']:
+        if vara[3] > 0:
+            cur = conn.cursor()
+            cur.execute("UPDATE stock SET amount = amount - 1 WHERE product_id = vara and amount > 0")
+        else:
+            return render_template("uppselt.html", vara=vara)
+
 	karfa = []
 	session['karfa'] = karfa
+    
 	return render_template("takk.html", vorur=vorur, nafn=nafn, netfang=netfang)
 
 

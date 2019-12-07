@@ -5,7 +5,7 @@
     <a href="/karfa"><i class="fas fa-cart-arrow-down"></i>:{{ k }}</a>
     <ol>
         {% for vara in vorur %}
-            {% set mynd = vara[0] %}
+            {% set mynd = vara[4] %}
             <h6> {{ vara[1] }} </h6><li>
             <img src="{{ url_for('static',filename=mynd) }}" alt="{{vara[1]}}" height="200" width=auto>
             <a href="/ikorfu/{{ vara[0] }}"> {{vara[2]}} </a></li>
